@@ -9,19 +9,11 @@ class UnityProduct extends Model
 {
     //
 
-    protected $fillable = ['amount','product_id','unity_id'];
+    protected $fillable = ['product_id','unity_id','description','amount'];
 
-
-    public function store($amount)
+    // persiste os dados no DB
+    public function store($data)
     {
-        $this->create($data);
-    }
-
-
-    public function listProdctForUnity()
-    {
-        return DB::table('unity_products')
-        ->join('products', 'products.id', '=', 'unities.unity_id')       
-        ->get();
+        return $this->create($data);
     }
 }

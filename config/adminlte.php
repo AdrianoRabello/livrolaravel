@@ -152,8 +152,8 @@ return [
             'icon_color' => 'default',
         ],
         [
-            'text' => 'Relatorio produtos',
-            'url'  => 'unityStock',
+            'text' => 'Transferir Produtos',
+            'url'  => 'transfer',
             'icon' => 'list',
             'icon_color' => 'default',
         ],

@@ -23,15 +23,20 @@
                     </div>
                     <div class="form-group">
                         {{Form::label('categories', 'Quantidae',['class'=>'text-muted'])}}
-                        {{Form::text('amount',null,['class'=>'form-control'])}}
+                        {{Form::number('amount',null,['class'=>'form-control'])}}
                     </div>
                     <div class="form-group">
                         {{Form::label('unity_id', 'Unidade',['class'=>'text-muted'])}}                   
                         {{Form::select('unity_id',$unities,null,['class'=>'form-control'])}}
                     </div>
                     <div class="form-group">
+                        {{Form::label('description', 'Descricão',['class'=>'text-muted'])}}                   
+                        {{Form::textArea('description',null,['class'=>'form-control',"rows"=>5])}}
+                    </div>
+                    <div class="form-group">
                         <button type="submit" name="button" class="btn btn-primary ">Salvar</button>
-                    </div>                    
+                    </div>   
+                    @include('auth.admin.includes.alerts')                 
                 </div>
                 <div class="col-md-4">
                     <div class="card">                        

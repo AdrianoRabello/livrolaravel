@@ -46,9 +46,10 @@ Route::group(['middleware'=>'auth','namespace'=>'Admin'],function(){
 
     $this->post('/entry','UnityProductController@store')->name('entry.store');
 
-    // listanto prudutos por unidade #endregion
+
     
-    Route::get('/unityStock', 'UnityStockController@index')->name('home');
-    Route::post('/unityStock', 'UnityStockController@show')->name('unityStock.list');
+    // listanto prudutos por unidade #endregion    
+    Route::get('/transfer', 'UnityProductController@transfer')->name('home');
+    //Route::post('/unityStock', 'UnityStockController@show')->name('unityStock.list');
   
 });

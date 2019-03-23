@@ -24,4 +24,23 @@ class Category extends Model
     {
       return $this->hasMany(Product::class);
     }
+
+    public function toArray()
+    {
+      $categories = $this->listAll();
+
+      $data = Array();
+
+      foreach ($categories as $category) {
+        $data[$category->id]  = $category->name;
+      }
+
+      return $data;
+
+    }
+
+    public function listAll()
+    {
+      return $this->get();
+    }
 }

@@ -35,7 +35,10 @@ class ProductController extends Controller
 
       
         $category = new Category();
-        $categories = $category->get(['id','name']);   
+        //$categories = $category->get(['id','name']);   
+        $categories = $category->toArray();   
+
+        //return dd($categories);
 
         $products = $this->product->paginate(5);
        

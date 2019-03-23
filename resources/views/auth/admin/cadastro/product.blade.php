@@ -33,22 +33,12 @@
 
                             <div class="form-group">
                                 <label for="">Categoria</label>
-                                @if($categories)
-                                    <select class="form-control" name="category_id">
-                                    
-                                    <option value="">Selecione</option>
-                                    @foreach($categories as $category)
-                                    
-                                        <option value="{{$category->id}}">{{$category->name}}</option>                                       
-                                    
-                                    @endforeach 
 
-                                    {{-- {{Form::select('categories',$categories,null,['class'=>'form-control'])}} --}}
-    
-                                @else
-                                <option value="0">Não há categoria cadastrada</option>
+                                @if($categories)
+                                    {{Form::select('categories',$categories,null,['class'=>'form-control'])}}                                    
+                                @else                                  
+                                    {{Form :: select ( 'categories' , [ ''  =>  ' Não há categoria cadastrada'], null , ['class'=>'form-control' ])}}
                                 @endif
-                                    </select>
                             </div>
                          
 

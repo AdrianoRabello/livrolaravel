@@ -21,7 +21,7 @@ class Product extends Model
     public function teste()
     {
     
-      return $this->belongsToMany(Unity::class)
+      return $this->belongsToMany(Unity::class,'unity_products')
              ->withPivot('amount');
 
     }
@@ -77,6 +77,10 @@ class Product extends Model
     //         'category_id' => 'required|numeric'
     //       ];
     // }
+
+
+
+  
     
 
 
@@ -104,6 +108,7 @@ class Product extends Model
     {
       return strtoupper($value);
     }
+
 
 
 

@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Models\Unity;
 use App\Models\UnityProduct;
+use App\Http\Requests\UnityProductFormRequest;
 
 class UnityProductController extends Controller
 {
@@ -29,17 +30,12 @@ class UnityProductController extends Controller
         //
 
         $unity = new Unity();
-        $product = new Product();
-
-        //return dd($unity->listAll());
+        $product = new Product();  
 
 
         $unities  = $unity->toArray();
-        $products = $product->toArray();
-        
-
-
-        //return dd($product->toArray());
+        $products = $product->toArray();     
+   
 
         return view('auth.admin.cadastro.unityProduct',compact('unities','products'));
     }
@@ -60,20 +56,28 @@ class UnityProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
-
-        $product = Product::find($request->only(['product_id']));
-        $unity   = Unity::find($request->only(['unity_id']));
-
-        $this->unityProduct->create($request->only(['product_id','unity_id','amount']));
-
-        return redirect()->to('entry');
+    public function store(UnityProductFormRequest $request)
+    {      
        
+        // salva os dados do request na variavel data em forma de array e 
+        //depois pede para model poersistir
+        $unityProduct = new UnityProduct();       
+        $data = $request->only(['unity_id','product_id','description','amount']);
+        $result = $unityProduct->store($data);     
+
+        if($result)
+        {
+
+            $response = [
+                'success' => true,
+                "message" => "Estoque atualizado com sucesso"
+              ];
+
+             return redirect()->to('/entry')->with('success',$response['message']);
+        }
+        //return dd($result);
 
         
-     
     }
 
     /**
@@ -119,5 +123,22 @@ class UnityProductController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+
+    public function transfer()
+    {
+        //return view("auth.admin.cadastro.transfer");
+        //return "teste";
+
+        $unity = new Unity();
+        $product = new Product();  
+
+
+        $unities  = $unity->toArray();
+        $products = $product->toArray();     
+   
+
+        return view('auth.admin.cadastro.transfer',compact('unities','products'));
     }
 }
